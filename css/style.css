@@ -2127,6 +2127,13 @@ a:focus {
     font-weight: 600;
 }
 
+.contact .contact-form-wrapper h2 {
+    text-align: center;
+    margin-bottom: 30px; /* optional spacing below the heading */
+    color: black; /* keep it matching your theme */
+}
+
+
 .contact .contact-text p {
     margin: 0;
     color: #ffffff;
@@ -2137,68 +2144,92 @@ a:focus {
     margin-bottom: 0;
 }
 
-.contact .contact-form {
+/* Contact Form Wrapper */
+.contact .contact-form-wrapper {
     position: relative;
     padding: 0 15px;
 }
 
-.contact .contact-form input {
-    color: #ffffff;
-    height: 40px;
-    border-radius: 0;
-    border-width: 1px;
-    border-color: rgba(256, 256, 256, .4);
-    background: transparent;
+/* 3D Input Fields */
+.contact .contact-form-wrapper .control-group {
+    margin-bottom: 20px;
 }
 
-.contact .contact-form textarea {
-    color: #ffffff;
-    height: 185px;
-    border-radius: 0;
-    border-width: 1px;
-    border-color: rgba(256, 256, 256, .4);
-    background: transparent;
-}
-
-.contact .contact-form input:focus,
-.contact .contact-form textarea {
-    box-shadow: none;
-}
-
-.contact .contact-form .form-control::placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-
-.contact .contact-form .form-control::-ms-input-placeholder {
-  color: #ffffff;
-}
-
-.contact .contact-form .form-control::-ms-input-placeholder {
-  color: #ffffff;
-}
-
-.contact .contact-form .btn {
-    padding: 16px 30px;
+.contact .contact-form-wrapper .form-control {
+    color: black;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background: white;
+    padding: 12px 15px;
+    width: 100%;
+    box-sizing: border-box;
     font-size: 16px;
-    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5), -5px -5px 15px rgba(255,255,255,0.1);
+}
+
+/* 3D Textarea */
+.contact .contact-form-wrapper textarea.form-control {
+    height: 200px;
+    border-radius: 10px;
+    border: none;
+    padding: 12px 15px;
+    background: white;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5), -5px -5px 15px rgba(255,255,255,0.1);
+    resize: none;
+}
+
+/* Focus Effect for 3D Look */
+.contact .contact-form-wrapper .form-control:focus {
+    outline: none;
+    background: white;
+}
+
+/* Placeholder Styling */
+.contact .contact-form-wrapper .form-control::placeholder {
+    color: black;
+    font-style: italic;
+}
+
+/* Hover Effect for 3D */
+.contact .contact-form-wrapper .form-control:hover {
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6), -5px -5px 15px rgba(255,255,255,0.15);
+}
+
+/* 3D Button */
+.contact .contact-form-wrapper .btn {
+    padding: 16px 35px;
+    font-size: 17px;
+    font-weight: 700;
     color: #fdbe33;
     background: #030f27;
-    border: none;
-    border-radius: 0;
-    transition: .3s;
+    border: 1px solid #fdbe33;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.4), -3px -3px 8px rgba(253,190,51,0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.contact .contact-form .btn:hover {
+.contact .contact-form-wrapper .btn:hover {
     color: #030f27;
-    background: #ffffff;
+    background: #fdbe33;
+    box-shadow: inset 2px 2px 8px rgba(0,0,0,0.4), inset -2px -2px 8px rgba(253,190,51,0.3);
 }
 
+/* Success Message */
+.contact .success-message {
+    color: #fdbe33;
+    margin-top: 20px;
+}
+
+/* Help Block */
 .contact .help-block ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
+
 
 
 /*******************************/
