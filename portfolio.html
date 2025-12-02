@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ABDULLA MOHAMMED IBRAHIM ALZIYABI</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Construction Company Website Template" name="keywords">
+        <meta content="Construction Company Website Template" name="description">
+
+        <link href="img/favicon.ico" rel="icon">
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet"> 
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="lib/slick/slick.css" rel="stylesheet">
+        <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            width: 350px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px; /* Increased image height */
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-name-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 1.1em;
+            text-align: center;
+            opacity: 0.9;
+            background-color: #333;
+            padding: 5px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .project-card:hover .project-name-overlay {
+            display: block;
+        }
+
+        .project-details {
+            padding: 15px;
+            display: none;
+        }
+
+        .show-details-btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #3494e6, #ec6ead); /* Gradient background */
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            transition: background 0.3s ease; /* Hover effect transition */
+        }
+
+        .show-details-btn:hover {
+            background: linear-gradient(90deg, #26608e, #ec4c98); /* Hover effect gradient */
+        }
+
+        /* Modal Styling */
+       .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 💥 TRANSPARENT BLACK OVERLAY */
+    background: rgba(0, 0, 0, 0.055); 
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; 
+}
+
+.modal-content {
+    /* 💥 MODAL CONTENT BACKGROUND: Set to transparent or dark */
+    background-color: #1a1a1a; /* Dark background */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 75%; 
+    max-height: 90%; 
+    overflow-y: auto; 
+    margin: 40px auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); 
+    color: #ffffff; /* 💥 BASE TEXT COLOR: Set to white */
+}
+ 
+/* Style for the slider in the modal */
+#modalImageSlider {
+    width: 100%;
+    margin-bottom: 25px;
+    position: relative; 
+}
+ 
+#modalImageSlider img {
+    width: 95%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2.5em; 
+    color: #e74c3c; 
+    cursor: pointer;
+    transition: color 0.2s, transform 0.3s;
+    z-index: 1060;
+}
+
+.close-btn:hover {
+    color: #c0392b;
+    transform: rotate(90deg); 
+}
+
+/* --- Owl Carousel Navigation (PREV/NEXT BUTTONS) STYLING --- */
+
+.modal-content .owl-nav {
+    position: absolute;
+    top: 50%; 
+    width: 100%;
+    margin: 0;
+    transform: translateY(-50%);
+    pointer-events: none; 
+}
+
+
+
+/* --- Owl Carousel Navigation (PREV/NEXT BUTTONS) STYLING --- */
+
+.modal-content .owl-nav button {
+    position: absolute;
+    top: 0;
+    
+    /* Gold/Orange Gradient Style (Kept for button contrast) */
+    background: linear-gradient(45deg, #ffcc00, #ff8c00) !important; 
+    color: #333 !important; 
+    
+    /* 💥 CHANGE 1: INCREASE FONT SIZE FOR LARGER ARROWS */
+    font-size: 4em !important; /* Changed from 3em to 4em */
+    
+    padding: 0 15px !important;
+    border-radius: 50% !important; 
+    height: 60px; 
+    width: 60px;
+
+    /* 💥 CHANGE 2: ADJUST LINE HEIGHT TO KEEP THE LARGER ARROW CENTERED */
+    line-height: 52px !important; /* Adjusted slightly */
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+    opacity: 1;
+    transition: all 0.3s ease;
+    cursor: pointer; 
+    pointer-events: auto; 
+}
+/* ... rest of the CSS remains the same ... */
+
+.modal-content .owl-nav button.owl-prev {
+    left: -35px; 
+}
+
+.modal-content .owl-nav button.owl-next {
+    right: -35px;
+}
+
+.modal-content .owl-nav button:hover {
+    background: linear-gradient(45deg, #ff8c00, #ffcc00) !important; 
+    transform: scale(1.1); 
+    color: #fff !important; 
+}
+
+/* =============================== */
+/* === MODAL CONTENT STYLING === */
+/* =============================== */
+
+/* Project Title Styling */
+#modalTitle {
+    /* 💥 TITLE COLOR: Changed to white for high contrast */
+    color: #ffffff; 
+    font-size: 1.2em; 
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #ffcc00; 
+    text-transform: uppercase;
+    
+}
+
+#modalDescription strong {
+    /* 💥 BOLD TEXT COLOR: Changed to a light color for emphasis */
+    color: #1ccb16; 
+    font-weight: 500;
+    display: block; 
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #ffcc00; 
+}
+
+/* Styling for the list items (bullets) */
+#modalDescription p:before {
+    color: #ec6ead; /* Pink/Purple bullet color */
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em; 
+    margin-left: -1em;
+}
+/* Styling for the dynamically generated list items */
+#modalDescription ul li {
+    margin-bottom: 15px; /* Add 8 pixels of space below each bullet point */
+    line-height: 1.4;   /* Optional: Increase line height for better readability */
+}
+        
+        </style>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="top-bar">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <h1><span style="color: red;font-size: x-large; font-weight: bolder; font-size: 50px;">AlZiyabi</span></h1>
+                                    </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="top-bar-item">
+                                        <div class="top-bar-icon">
+                                            <i class="flaticon-calendar"></i>
+                                        </div>
+                                        <div class="top-bar-text">
+                                            <h3>Opening Hour</h3>
+                                            <p>Sat - Thr, 7:00 - 9:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="top-bar-item">
+                                        <div class="top-bar-icon">
+                                            <i class="flaticon-call"></i>
+                                        </div>
+                                        <div class="top-bar-text">
+                                            <h3>Call Us</h3>
+                                            <p>+966 50 463 1753</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="top-bar-item">
+                                        <div class="top-bar-icon">
+                                            <i class="flaticon-send-mail"></i>
+                                        </div>
+                                        <div class="top-bar-text">
+                                            <h3>Email Us</h3>
+                                            <p>jed-office@alziyabi.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-bar">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                        <a href="#" class="navbar-brand">MENU</a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto">
+                                <a href="index.html" class="nav-item nav-link">Home</a>
+                                <a href="about.html" class="nav-item nav-link">About</a>
+                                <a href="service.html" class="nav-item nav-link">Service</a>
+                                <a href="portfolio.html" class="nav-item nav-link active">Project</a>
+                                <a href="gallery.html" class="nav-item nav-link">Gallery</a> 
+                                <a href="vehicles.html" class="nav-item nav-link">Vehicles</a>
+                                <a href="Tools.html" class="nav-item nav-link">Tools</a> 
+                                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                                
+                                </div>
+                                
+                            </div>
+                            </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Our Projects</h2>
+                        </div>
+                        <div class="col-12">
+                            <a href="">Home</a>
+                            <a href="">Our Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                                                    <!-- project1 -->
+
+            <h2 style="text-align: center; font-size: 2.5em; color: #004d99; border-bottom: 3px solid #ffcc00; padding-bottom: 5px; margin: 30px 0 20px 0;">🚧 On-Going Projects 🚧</h2>
+            <section>
+                <div class="project-card">
+        <img src="images/Erection and Installation Work ( Tabarjal) Images/img1.jpg" alt="Project 1" class="project-image">
+        <div class="project-name-overlay">Erection and Installation Work Substation Tabarjal ( SIEMENS)</div>
+        <div class="project-details">
+            <h3>Erection & Installation Work RC Project</h3>
+        </div>
+        <button class="show-details-btn" onclick="showModal(
+    'Erection and Installation Work Substation Tabarjal ( SIEMENS)', 
+    '**Work Description:** • Erection of 380kV GIS • Erection of 132kV GIS • Installation 132kV of Reactor • Power Transformer 380kV • 13.8kV Switch Gear (SWG) • Auxiliary Transformer & NER • AC DB Panels • DC DB Panels • Battery, Battery Charger, Fuse Box • Erection of 380kV GIS • Control and Protection Panel • 380kV Outdoor Equipment • Telecom / Tele protection / TFR Panel • SAS System & FO Cable • MV Cabling • HV Cabling • PDMS / OFMR • 132kV Outdoor Equipment • Installation of Cable Tray • Installation of Earthing Grid / Grounding Works • Final Closing / Punch List Closing • Remote End Work', 
+    'images/Erection and Installation Work ( Tabarjal) Images/img1.jpg, images/Erection and Installation Work ( Tabarjal) Images/img2.jpg,images/Erection and Installation Work ( Tabarjal) Images/img3.jpg, images/Erection and Installation Work ( Tabarjal) Images/img4.jpg, images/Erection and Installation Work ( Tabarjal) Images/img6.jpg, images/Erection and Installation Work ( Tabarjal) Images/img7.jpg, images/Erection and Installation Work ( Tabarjal) Images/img10.jpg, images/Erection and Installation Work ( Tabarjal) Images/img11.jpg, images/Erection and Installation Work ( Tabarjal) Images/img12.jpg, images/Erection and Installation Work ( Tabarjal) Images/img13.jpg, images/Erection and Installation Work ( Tabarjal) Images/img14.jpg, images/Erection and Installation Work ( Tabarjal) Images/img15.jpg, images/Erection and Installation Work ( Tabarjal) Images/img16.jpg, images/Erection and Installation Work ( Tabarjal) Images/img17.jpg, images/Erection and Installation Work ( Tabarjal) Images/img18.jpg, images/Erection and Installation Work ( Tabarjal) Images/img19.jpg, images/Erection and Installation Work ( Tabarjal) Images/img20.jpg, images/Erection and Installation Work ( Tabarjal) Images/img21.jpg, images/Erection and Installation Work ( Tabarjal) Images/img22.jpg, images/Erection and Installation Work ( Tabarjal) Images/img23.jpg, images/Erection and Installation Work ( Tabarjal) Images/img24.jpg, images/Erection and Installation Work ( Tabarjal) Images/img25.jpg, images/Erection and Installation Work ( Tabarjal) Images/img26.jpg, images/Erection and Installation Work ( Tabarjal) Images/img27.jpg, images/Erection and Installation Work ( Tabarjal) Images/img28.jpg, images/Erection and Installation Work ( Tabarjal) Images/img29.jpg, images/Erection and Installation Work ( Tabarjal) Images/img30.jpg, images/Erection and Installation Work ( Tabarjal) Images/img31.jpg, images/Erection and Installation Work ( Tabarjal) Images/img32.jpg, images/Erection and Installation Work ( Tabarjal) Images/img33.jpg, images/Erection and Installation Work ( Tabarjal) Images/img34.jpg,' 
+)">Show Details</button>
+    </div>
+                                                        <!-- project2 -->
+                <div class="project-card">
+                    <img src="images/Jakson-site -Images/new image 49.jpg" alt="Project 2" class="project-image">
+                    <div class="project-name-overlay">Erection and Installation Work Substation Tabarjal ( JAKSON GROUP )</div>
+                    <div class="project-details">
+                        <h3>Erection and Installation Work Substation Tabarjal ( JAKSON GROUP )</h3>
+                    </div>
+                    <button class="show-details-btn" onclick="showModal(
+                        'Erection and Installation Work Substation Tabarjal ( JAKSON GROUP )', 
+                        '**Work Description:** • Erection and installation of 380kV Gas Insulated Switchgear (GIS) • Erection and installation of 132kV Gas Insulated Switchgear (GIS) • Installation of 132kV Reactor • Installation and alignment of 380kV Power Transformer • Installation of 13.8kV Switchgear (SWG) • Installation of Auxiliary Transformer & Neutral Earthing Resistor (NER) • Installation of AC Distribution Board (AC DB) Panels • Installation of DC Distribution Board (DC DB) Panels • Installation of Battery Banks, Battery Chargers & Fuse Boxes • Installation of Control & Protection Panels • Installation of Telecom, Tele-Protection & TFR Panels • Installation and configuration support for SAS System & Fiber Optic (FO) Cable • Laying and termination of Medium Voltage (MV) Cables • Laying and termination of High Voltage (HV) Cables • Installation of PDMS / OFMR Systems • Installation of 380kV Outdoor Equipment • Installation of 132kV Outdoor Equipment • Installation of Cable Trays • Execution of Earthing Grid / Grounding Works • Coordination for Final Closing & Punch List Clearance • Execution of Remote End Works • Plant Machinery Offloading Shifting and installation • Installation of MCC Panels • Cable Laying and Termination Work • Transformer Installation and Alignment',
+                        'images/Jakson-site -Images/new image 49.jpg, images/Jakson-site -Images/img2.jpg, images/Jakson-site -Images/img5.jpg, images/Jakson-site -Images/img6.jpg, images/Jakson-site -Images/img7.jpg, images/Jakson-site -Images/img8.jpg, images/Jakson-site -Images/img9.jpg, images/Jakson-site -Images/img10.jpg, images/Jakson-site -Images/img11.jpg, images/Jakson-site -Images/img12.jpg, images/Jakson-site -Images/img13.jpg, images/Jakson-site -Images/imf14.jpg, images/Jakson-site -Images/img15.jpg, images/Jakson-site -Images/img16.jpg, images/Jakson-site -Images/img17.jpg, images/Jakson-site -Images/img18.jpg, images/Jakson-site -Images/img19.jpg, images/Jakson-site -Images/img20.jpg, images/Jakson-site -Images/img21.jpg, images/Jakson-site -Images/img22.jpg, images/Jakson-site -Images/img23.jpg, images/Jakson-site -Images/img24.jpg, images/Jakson-site -Images/img25.jpg, images/Jakson-site -Images/img26.jpg, images/Jakson-site -Images/img27.jpg, images/Jakson-site -Images/img28.jpg, images/Jakson-site -Images/img29.jpg, images/Jakson-site -Images/img30.jpg, images/Jakson-site -Images/img31.jpg, images/Jakson-site -Images/img32.jpg, images/Jakson-site -Images/img33.jpg, images/Jakson-site -Images/img34.jpg, images/Jakson-site -Images/img35.jpg, images/Jakson-site -Images/img36.jpg, images/Jakson-site -Images/img37.jpg, images/Jakson-site -Images/img38.jpg, images/Jakson-site -Images/img39.jpg, images/Jakson-site -Images/img40.jpg, images/Jakson-site -Images/img41.jpg, images/Jakson-site -Images/img42.jpg, images/Jakson-site -Images/img43.jpg, images/Jakson-site -Images/img44.jpg, images/Jakson-site -Images/img45.jpg, images/Jakson-site -Images/img46.jpg, images/Jakson-site -Images/img47.jpg, images/Jakson-site -Images/img48.jpg, images/Jakson-site -Images/new image 50.jpg,'
+                    )">Show Details</button>
+                </div>
+                                                            <!-- project3 -->                 
+
+
+
+                <div class="project-card">
+                    <img src="images/UMI Images/img8.jpg" alt="Project 3" class="project-image">
+                    <div class="project-name-overlay">GB (Gypsum Board) Line 2 Yanbu (UMI)</div>
+                    <div class="project-details">
+                        <h3>GB (Gypsum Board) Line 2 Yanbu (UMI)</h3>
+                    </div>
+                    <button class="show-details-btn" onclick="showModal(
+                        'GB (Gypsum Board) Line 2 Yanbu (UMI)', 
+                        '**Work Description:** • Plant Machinery Offloading Shifting and installation • Installation of MCC Panels • Supply and installation of main Duct • Supply and installation of Platform and Supports • Boiler Installation and piping • Installation of Conveyor Belt (300 meter) • Supply and Installation of Crossover Bridge • Installation of Dryer • Supply and installation of Protective Fence • Supply and installation of handrail • Supply and Installation of Silo • Erection & Installation Work • Chimney Installation • Air Compressor Installation',
+                        'images/UMI Images/img10.jpg, images/UMI Images/img8.jpg, images/UMI Images/img1.jpg, images/UMI Images/img2.jpg, images/UMI Images/img3.jpg, images/UMI Images/img4.jpg, images/UMI Images/img5.jpg, images/UMI Images/img6.jpg, images/UMI Images/img7.jpg, images/UMI Images/img9.jpg, images/UMI Images/img11.jpg, images/UMI Images/img12.jpg, images/UMI Images/img13.jpg, images/UMI Images/img14.jpg, images/UMI Images/img15.jpg, images/UMI Images/img16.jpg, images/UMI Images/img17.jpg, images/UMI Images/img18.jpg, images/UMI Images/img19.jpg, images/UMI Images/img20.jpg, images/UMI Images/img21.jpg, images/UMI Images/img22.jpg, images/UMI Images/img23.jpg, images/UMI Images/img24.jpg, images/UMI Images/img25.jpg, images/UMI Images/img26.jpg, images/UMI Images/img27.jpg, images/UMI Images/img28.jpg, images/UMI Images/img29.jpg, images/UMI Images/img30.jpg, images/UMI Images/img31.jpg, images/UMI Images/img32.jpg, images/UMI Images/img33.jpg, images/UMI Images/img34.jpg, images/UMI Images/img35.jpg, images/UMI Images/img36.jpg, images/UMI Images/img37.jpg, images/UMI Images/img38.jpg, images/UMI Images/img39.jpg, images/UMI Images/img40.jpg, images/UMI Images/img41.jpg, images/UMI Images/img42.jpg, images/UMI Images/img43.jpg, images/UMI Images/img44.jpg, images/UMI Images/img45.jpg, images/UMI Images/img46.jpg, images/UMI Images/img47.jpg, images/UMI Images/img48.jpg, images/UMI Images/img49.jpg, images/UMI Images/img50.jpg, images/UMI Images/img51.jpg, images/UMI Images/img52.jpg, images/UMI Images/img53.jpg, images/UMI Images/img54.jpg, images/UMI Images/img55.jpg, images/UMI Images/img56.jpg, images/UMI Images/img57.jpg, images/UMI Images/img58.jpg, images/UMI Images/img59.jpg, images/UMI Images/img60.jpg, images/UMI Images/img61.jpg, images/UMI Images/img62.jpg, images/UMI Images/img63.jpg, images/UMI Images/img64.jpg, images/UMI Images/img65.jpg, images/UMI Images/img66.jpg, images/UMI Images/img67.jpg, images/UMI Images/img68.jpg, images/UMI Images/img69.jpg, images/UMI Images/img70.jpg, images/UMI Images/img71.jpg, images/UMI Images/img72.jpg, images/UMI Images/img73.jpg, images/UMI Images/img74.jpg, images/UMI Images/img75.jpg, images/UMI Images/img76.jpg'
+                    )">Show Details</button>
+                </div>
+
+                                                                <!-- project4 --> 
+
+
+                <div class="project-card">
+                    <img src="images/AL-OJAIMI images/img3.jpg" alt="Project 4" class="project-image">
+                    <div class="project-name-overlay">Electrical Installation Work for King Abdullah Airport 132/13.8 kV Substation (MOHAMMAD AL-OJAIMI GROUP )</div>
+                    <div class="project-details">
+                        <h3>Electrical Installation Work for King Abdullah Airport 132/13.8 kV Substation (MOHAMMAD AL-OJAIMI GROUP )</h3>
+                    </div>
+                    <button class="show-details-btn" onclick="showModal(
+                        'Electrical Installation Work for King Abdullah Airport 132/13.8 kV Substation (MOHAMMAD AL-OJAIMI GROUP )', 
+                        '**Work Description:** • Installation of ACDBs & DCDBs panels • Installation of battery banks and battery chargers • Installation lighting panels (ILP, OLP & ELP) • All LV power and control cables laying, dressing and termination from CR to GIS and SWR, TRs, and all equipment\'s including cable tagging • MV cable laying • MV cable termination • Complete earthing mesh, earthing rods, flat bar • Installation of small power lighting • Complete of remote end works including',
+                        'images/AL-OJAIMI images/img1.jpg, images/AL-OJAIMI images/img2.jpg, images/AL-OJAIMI images/img3.jpg, images/AL-OJAIMI images/img4.jpg, images/AL-OJAIMI images/img5.jpg, images/AL-OJAIMI images/img6.jpg, images/AL-OJAIMI images/img7.jpg, images/AL-OJAIMI images/img8.jpg, images/AL-OJAIMI images/img9.jpg, images/AL-OJAIMI images/img10.jpg, images/AL-OJAIMI images/img11.jpg, images/AL-OJAIMI images/img12.jpg, images/AL-OJAIMI images/img13.jpg, images/AL-OJAIMI images/img14.jpg, images/AL-OJAIMI images/img16.jpg, images/AL-OJAIMI images/img17.jpg, images/AL-OJAIMI images/img18.jpg, images/AL-OJAIMI images/img19.jpg, images/AL-OJAIMI images/img20.jpg, images/AL-OJAIMI images/img21.jpg, images/AL-OJAIMI images/img22.jpg, images/AL-OJAIMI images/img23.jpg, images/AL-OJAIMI images/Control room.jpg, images/AL-OJAIMI images/Lighting mast(LCLM).jpg, images/AL-OJAIMI images/Power Transformer 1and 2.jpg, images/AL-OJAIMI images/Lighting pole and lightning mast.jpg, images/AL-OJAIMI images/Tunnel one.jpg, images/AL-OJAIMI images/Tunnel 2.jpg '
+                    )">Show Details</button>
+                </div>
+              
+            </section>
+            <h2 style="text-align: center; font-size: 2.5em; color: #004d99; border-bottom: 3px solid #ffcc00; padding-bottom: 5px; margin: 30px 0 20px 0;">🚧 Completed Projects 🚧</h2>
+            <section>
+                 
+                                                                <!-- project5 --> 
+
+                <div class="project-card">
+                    <img src="images/Erection and Installation Work(Yanbu-16P)/Picture2.jpg" alt="Project 5" class="project-image">
+                    <div class="project-name-overlay">Erection and Installation Work Substation Yanbu-16P ( SIEMENS )</div>
+                    <div class="project-details">
+                        <h3>Erection and Installation Work Substation Yanbu-16P ( SIEMENS )</h3>
+                    </div>
+                    <button class="show-details-btn" onclick="showModal(
+                        'Erection and Installation Work Substation Yanbu-16P ( SIEMENS )', 
+                        '**Work Description:** • 34.5 KV switch gear erection • 380/115 KV GIS erection • Protection panel erection • Transformer erection • DC/AC power supply including batteries bank erection • Cable pulling termination • Control cable pulling • Control cable termination • MV cable pulling • MV cable termination • FO cable pulling • Auxiliary supply LV • Testing and commissioning support service',
+                        'images/Erection and Installation Work(Yanbu-16P)/Picture2.jpg, images/Erection and Installation Work(Yanbu-16P)/Picture1.jpg, images/Erection and Installation Work(Yanbu-16P)/Picture3.jpg, images/Erection and Installation Work(Yanbu-16P)/Picture4.jpg, images/Erection and Installation Work(Yanbu-16P)/Picture5.jpg, images/Erection and Installation Work(Yanbu-16P)/Picture6.jpg, images/Erection and Installation Work(Yanbu-16P)/Picture7.jpg,'
+                    )">Show Details</button>
+                </div>
+
+                                                                <!-- project6 --> 
+
+                <div class="project-card">
+                    <img src="images/Saad Solar Plant/img4.jpg" alt="Project 5" class="project-image">
+                    <div class="project-name-overlay">132/33 kV AIS SAAD SOLAR Power Plant Riyadh ( ELSWEDY ELECTRIC T&D )</div>
+                    <div class="project-details">
+                        <h3>132/33 kV AIS SAAD SOLAR Power Plant Riyadh ( ELSWEDY ELECTRIC T&D )</h3>
+                    </div>
+                    <button class="show-details-btn" onclick="showModal(
+                        '132/33 kV AIS SAAD SOLAR Power Plant Riyadh ( ELSWEDY ELECTRIC T&D )', 
+                        '**Work Description:** • 132 KV Gantry Area Equipment • 132KV Switch Yard Equipment • 132/33 KV Power Transformers (2 TR\'s) + 132 KV Neutral Equipment • Outdoor Droppers + Clamps • 33 KV MW Switchgear • Control Building • Auto Transformers • STATCOM • AC/DC System • Interface Room Inside (BSP 9094) Substation • End Towers (OHTL) • Indoor Grounding System • Cable Raceways',
+                        'images/Saad Solar Plant/img1.jpg, images/Saad Solar Plant/img2.jpg, images/Saad Solar Plant/img3.jpg, images/Saad Solar Plant/img4.jpg, images/Saad Solar Plant/img5.jpg, images/Saad Solar Plant/img6.jpg, images/Saad Solar Plant/img7.jpg, images/Saad Solar Plant/img8.jpg, images/Saad Solar Plant/img9.jpg, images/Saad Solar Plant/img10.jpg, images/Saad Solar Plant/img11.jpg, images/Saad Solar Plant/img12.jpg, images/Saad Solar Plant/img13.jpg, images/Saad Solar Plant/img14.jpg, images/Saad Solar Plant/img15.jpg, images/Saad Solar Plant/img16.jpg, images/Saad Solar Plant/img17.jpg, images/Saad Solar Plant/img18.jpg, images/Saad Solar Plant/img19.jpg, images/Saad Solar Plant/img20.jpg, images/Saad Solar Plant/img21.jpg,'
+                    )">Show Details</button>
+                </div>
+                                                                <!-- project7 --> 
+
+                <div class="project-card">
+                    <img src="images/PLASTER BOARD PLANT JEDDAH-7/Picture1.jpg" alt="Project 5" class="project-image">
+                    <div class="project-name-overlay">PLASTER BOARD PLANT JEDDAH-7 ( EL KHAYYAT )</div>
+                    <div class="project-details">
+                        <h3>PLASTER BOARD PLANT JEDDAH-7 ( EL KHAYYAT )</h3>
+                    </div>
+                    <button class="show-details-btn" onclick="showModal(
+                        'PLASTER BOARD PLANT JEDDAH-7 ( EL KHAYYAT )', 
+                        '**Work Description:** • Plant Machinery Offloading Shifting and installation • Installation of MCC Panels • Supply and installation of main Duct • Supply and installation of Platform and Supports • Boiler Installation and piping • Installation of Conveyor Belt (300 meter) • Supply and Installation of Crossover Bridge • Installation of Dryer • Supply and installation of Protective Fence • Supply and installation of handrail • Supply and Installation of Silo • Erection & Installation Work • Chimney Installation • Air Compressor Installation • Cable Pulling & Termination • Piping support installation • Water Pump • Diesel Transfer Pump • Cable Trench/ Asphalt • Cable Tray Installation • MV Cable Puling • Exhaust Fan Installation • Lighting Fixture • Lighting Distribution Baard • Duct Type AC unit Installation',
+
+                        'images/PLASTER BOARD PLANT JEDDAH-7/Picture1.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture2.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture3.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture4.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture5.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture6.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture7.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture9.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture10.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture11.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture12.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture13.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture14.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture15.jpg, images/PLASTER BOARD PLANT JEDDAH-7/Picture16.jpg'
+                    )">Show Details</button>
+                </div>
+                                                                <!-- project8 --> 
+
+                <div class="project-card">
+                    <img src="images/small lightning/img1.jpg" alt="Project 5" class="project-image">
+                    <div class="project-name-overlay">Small Power & Lighting Work Yanbu-16P ( SIEMENS )</div>
+                    <div class="project-details">
+                        <h3>Small Power & Lighting Work Yanbu-16P ( SIEMENS )</h3>
+                    </div>
+                    <button class="show-details-btn" onclick="showModal(
+                        'Small Power & Lighting Work Yanbu-16P ( SIEMENS )', 
+                        '**Work Description:** • Panel boards (LSP) • Cable wire conduit • Light fixture power outlet • Supply & Installation of Fiber Glass Lighting Poles • Testing and commissioning work for LSP',
+
+                        'images/small lightning/img1.jpg,images/small lightning/img2.webp, images/small lightning/img3.webp,images/small lightning/img4.jpg'
+                    )">Show Details</button>
+                </div>
+
+
+                </section>
+        
+            <div class="modal" id="myModal" onclick="closeModal()">
+                <div class="modal-content" onclick="event.stopPropagation()">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <h2 id="modalTitle"></h2>
+                    
+                    <div id="modalImageSlider" class="owl-carousel modal-slider">
+                        </div>
+                    
+                    <p id="modalDescription"></p>
+                    <p id="modalLocation"></p>
+                </div>
+            </div>
+            <div class="footer wow fadeIn" data-wow-delay="0.3s">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="footer-contact">
+                                <h2>Office Contact</h2>
+                                <p><i class="fa fa-map-marker-alt"></i>Jeddah, Makkah Region, 22233, Saudi Arabia</p>
+                                <p><i class="fa fa-phone-alt"></i>966 50 463 1753</p>
+                                <p><i class="fa fa-envelope"></i>jed-office@alziyabi.com</p>
+                                <div class="footer-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="footer-link">
+                                <h2>Services Areas</h2>
+                                <a href="portfolio.html">Electrical Work</a>
+                                <a href="">Civil Engineering</a>
+                                <a href="">Mechanical Work</a>
+                                <a href="">Erection Work</a>
+                                <a href="">Capacitor Bank Installation</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="footer-link">
+                                <h2>Useful Pages</h2>
+                                <a href="about.html">About Us</a>
+                                <a href="contact.html">Contact Us</a>
+                                
+                                <a href="portfolio.html">Projects</a>
+                                <a href="service.html">Testimonial</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="newsletter">
+                                <h2>Newsletter</h2>
+                                <p>
+                                    Subscribe to newsletter!
+                                </p>
+                                <div class="form">
+                                    <input class="form-control" placeholder="Email here">
+                                    <button class="btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container footer-menu">
+                    <div class="f-menu">
+                        <a href="">Terms of use</a>
+                        <a href="">Privacy policy</a>
+                        <a href="">Cookies</a>
+                        <a href="">Help</a>
+                        <a href="">FQAs</a>
+                    </div>
+                </div>
+                <div class="container copyright">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>&copy; <a href="#">AlZiyabi</a>, All Right Reserved.</p>
+                        </div>
+                        
+                        </div>
+                </div>
+            </div>
+            <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        
+<script>
+    // Global variable to hold the current Owl Carousel instance
+    let projectSlider = null;
+
+    function showModal(title, description, imagePaths) {
+        // 💥 FIX 1: Keeping the original ID that works for your HTML
+        const modal = document.getElementById('myModal');
+        document.getElementById('modalTitle').textContent = title;
+        
+        // Use jQuery selector for the slider container
+        const sliderContainer = $('#modalImageSlider');
+        
+        // --- IMPORTANT FIX: Destroy and Clear Old Instance ---
+        if (projectSlider && sliderContainer.hasClass('owl-loaded')) {
+             projectSlider.owlCarousel('destroy');
+        }
+        
+        // 2. Clear any lingering HTML elements and classes
+        sliderContainer.empty();
+        sliderContainer.removeClass('owl-carousel owl-loaded');
+        projectSlider = null; // Reset the global reference
+        
+        // 1. Handle Description (New Logic)
+        const descriptionList = document.getElementById('modalDescription');
+        descriptionList.innerHTML = ''; 
+
+        // 1. Use regex to separate the heading (e.g., **Work Description:**) from the list body
+        const match = description.match(/^(\*\*.*?\*\*[\:\.]?\s*)([\s\S]*)/);
+        let headingText = '';
+        let listBody = description;
+
+        if (match) {
+            headingText = match[1].trim(); // '**Work Description:**'
+            listBody = match[2].trim();    // '• Plant Machinery Offloading...'
+            
+            // Remove any trailing colon or period from the heading before display
+            headingText = headingText.replace(/[:\.]$/, '').trim();
+        }
+
+        // --- Process the Heading (Work Description) ---
+        if (headingText) {
+             // Replace **Text** with <strong>Text</strong>
+            headingText = headingText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            
+            const headingEl = document.createElement('p'); 
+            headingEl.className = 'work-description-heading'; 
+            headingEl.innerHTML = headingText;
+            descriptionList.appendChild(headingEl);
+        }
+
+        // --- Process the List Items ---
+        const ul = document.createElement('ul');
+        ul.style.textAlign = 'left'; 
+        ul.style.listStyleType = 'disc'; // Use actual disc bullet here if you prefer standard bullets
+        
+        // Split the list body by the bullet point (•)
+        const listItems = listBody.split('•').map(item => item.trim()).filter(item => item.length > 0);
+
+        if (listItems.length > 0) {
+            listItems.forEach(itemText => {
+                const li = document.createElement('li');
+                // Ensure list item starts clean and handles bolding
+                let cleanItem = itemText.trim().replace(/^[:\.\s]+/, ''); // Remove leading colon/period/space
+                li.innerHTML = cleanItem.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                ul.appendChild(li);
+            });
+            descriptionList.appendChild(ul);
+        } else if (headingText === '') {
+            // If no heading and no bullets, show as a single paragraph
+            const p = document.createElement('p');
+            p.textContent = description;
+            descriptionList.appendChild(p);
+        }
+        
+        // document.getElementById('modalLocation').textContent = '';
+        
+        // document.getElementById('modalLocation').textContent = ''; // Removed ID 'modalLocation' as it wasn't defined
+
+
+        // 2. Handle Image Slider 
+        const images = imagePaths.split(',').map(path => path.trim()).filter(path => path !== '');
+
+        if (images.length > 0) {
+            // Re-add the base class for re-initialization
+            sliderContainer.addClass('owl-carousel');
+            
+            images.forEach(imagePath => {
+                const slide = $('<div></div>').addClass('item'); // Added .item class
+                const img = $('<img>')
+                    .attr('src', imagePath)
+                    .attr('alt', 'Project Image');
+                    
+                slide.append(img);
+                sliderContainer.append(slide);
+            });
+
+            // Re-initialize the Owl Carousel Slider
+           // INSIDE your showModal function:
+
+        // Re-initialize the Owl Carousel Slider
+        projectSlider = sliderContainer.owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true, 
+            dots: true, 
+            // 💥 FIX: Change 'items' from 1 to 2
+            items: 2, 
+            autoplay: true,
+            autoplayTimeout: 4000,
+            smartSpeed: 800,
+            navText: ["&#x2039;", "&#x203a;"] 
+        });
+        }
+
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        // 💥 FIX 1: Keeping the original ID that works for your HTML
+        const modal = document.getElementById('myModal');
+        modal.style.display = 'none';
+
+        // Destroy the slider instance when closing the modal to prevent errors (Optional but safer)
+        const sliderContainer = $('#modalImageSlider');
+        if (projectSlider && sliderContainer.hasClass('owl-loaded')) {
+            projectSlider.owlCarousel('destroy');
+        }
+        sliderContainer.empty();
+        sliderContainer.removeClass('owl-carousel owl-loaded');
+        projectSlider = null; 
+    }
+</script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/slick/slick.min.js"></script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
