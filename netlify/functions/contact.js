@@ -12,13 +12,7 @@ export async function handler(event) {
       },
       body: JSON.stringify({
         form_name: "contact",
-        payload: {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          subject: data.subject,
-          message: data.message
-        }
+        payload: data
       })
     });
 
