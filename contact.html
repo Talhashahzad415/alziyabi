@@ -284,26 +284,40 @@
 document.getElementById("contactForm").addEventListener("submit", async function(e){
     e.preventDefault();
 
+    const btn = this.querySelector("button");
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+
     const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("message").value
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        subject: document.getElementById("subject").value.trim(),
+        message: document.getElementById("message").value.trim()
     };
 
-    const res = await fetch("https://alziyabiwebsite.netlify.app/.netlify/functions/contact", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
+    try {
+        const res = await fetch("https://alziyabiwebsite.netlify.app/.netlify/functions/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
 
-    if (res.ok) {
+        if (!res.ok) throw new Error("Submission failed");
+
         document.getElementById("success-message").style.display = "block";
         document.getElementById("contactForm").reset();
+
+    } catch (err) {
+        alert("❌ Message إرسال نہیں ہو سکا۔ دوبارہ کوشش کریں۔");
+        console.error(err);
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "Send Message";
     }
 });
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
